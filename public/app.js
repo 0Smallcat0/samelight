@@ -210,11 +210,13 @@
       small.getContext('2d').drawImage(c, 0, 0, small.width, small.height);
       const blob = await new Promise(r => small.toBlob(r, 'image/jpeg', 0.92));
       const you = await analyze(blob);
-      const end = current.scores.fairAfter;
-      $('selfie-rows').replaceChildren(...Object.keys(SameLight.LABELS).filter(k => k in you && k in end).map(k => {
+      const s = current.scores;
+      const rows = SameLight.verdict(s.shownBefore, s.shownAfter, s.fairBefore, s.fairAfter).rows;
+      $('selfie-rows').replaceChildren(...rows.filter(r => r.key in you).map(r => {
+        // A sharp selfie is only fair against a sharp photo: the ad's own start plus what really held.
+        const end = s.shownBefore[r.key] + r.kept;
         const tr = document.createElement('tr');
-        const ahead = you[k] >= end[k];
-        tr.innerHTML = `<td>${SameLight.LABELS[k]}</td><td class="r">${you[k].toFixed(0)}</td><td class="r">${end[k].toFixed(0)}</td><td>${ahead ? 'Already there' : 'Room to improve'}</td>`;
+        tr.innerHTML = `<td>${r.label}</td><td class="r">${you[r.key].toFixed(0)}</td><td class="r">${end.toFixed(0)}</td><td>${you[r.key] >= end ? 'Already there' : 'Room to improve'}</td>`;
         return tr;
       }));
       $('selfie-table').hidden = false;
