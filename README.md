@@ -4,7 +4,7 @@ Beauty ads compare two different photos. SameLight makes them compare two faces.
 
 **Live app:** https://samelight.pages.dev
 
-Most before and after ads are not lying about the product so much as about the photo. The after shot is softer, brighter and warmer, and those three things raise skin scores on their own. SameLight checks an ad right before you pay: it brings both photos to the same focus, exposure and colour, measures the skin again with the YouCam Skin Analysis API, and shows how much of the promise is left.
+Most before and after ads are not lying about the product so much as about the photo. The after shot is softer, brighter and warmer, and together those three things raise skin scores with no change to the skin. SameLight checks an ad right before you pay: it brings both photos to the same focus, exposure and colour, measures the skin again with the YouCam Skin Analysis API, and shows how much of the promise is left.
 
 ## The finding behind it
 
