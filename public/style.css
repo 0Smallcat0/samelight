@@ -87,6 +87,7 @@ dt { font-weight: 500; }
 .pick { position: relative; display: inline-block; }
 .pick input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 #selfie-table { margin-top: 14px; max-width: 640px; }
+#selfie-table th:last-child, #selfie-table td:last-child { padding-left: 32px; }
 
 .method { margin-top: 72px; padding-top: 26px; border-top: 2px solid var(--ink); }
 .method h2 + ol { margin-bottom: 34px; }
