@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SameLight: check a before and after ad before you pay</title>
+<meta name="description" content="Beauty ads compare two different photos. SameLight makes them compare two faces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <header class="mast">
+    <span class="mark">SameLight</span>
+    <span class="tag" lang="ja">同じ光で、見比べる</span>
+  </header>
+
+  <main>
+    <section class="intake">
+      <h1>Beauty ads compare two different photos. SameLight makes them compare two faces.</h1>
+      <p class="lede">Paste a before and after ad. SameLight brings both photos to the same focus, exposure and colour, then measures the skin again with YouCam Skin Analysis. You see how much of the promise is left.</p>
+
+      <div class="drops">
+        <label class="drop" data-slot="before">
+          <span class="drop-name">Before</span>
+          <canvas hidden></canvas>
+          <span class="drop-hint">Drop a photo, or choose a file</span>
+          <input type="file" accept="image/*">
+        </label>
+        <label class="drop" data-slot="after">
+          <span class="drop-name">After</span>
+          <canvas hidden></canvas>
+          <span class="drop-hint">Drop a photo, or choose a file</span>
+          <input type="file" accept="image/*">
+        </label>
+      </div>
+      <p class="note">One screenshot with both faces works too. Press Ctrl+V anywhere on this page.</p>
+
+      <div class="go">
+        <button id="run" disabled>Check this ad</button>
+        <p id="status" role="status"></p>
+      </div>
+
+      <div class="examples">
+        <h2>Open a checked example</h2>
+        <div id="examples" class="example-row"></div>
+        <p class="note">Example faces are AI generated with YouCam. They are not real customers.</p>
+      </div>
+    </section>
+
+    <section id="slip" class="slip" hidden>
+      <div class="slip-top">
+        <div>
+          <p class="label">Result</p>
+          <h2 id="headline"></h2>
+          <p id="explain"></p>
+        </div>
+        <div id="seal" class="seal" aria-hidden="true"></div>
+      </div>
+
+      <div class="sums">
+        <div><p class="label">The ad shows</p><p id="sum-shown" class="num"></p></div>
+        <div><p class="label">Under the same light</p><p id="sum-fair" class="num"></p></div>
+        <div><p class="label">Left of the promise</p><p id="sum-share" class="num strong"></p></div>
+      </div>
+
+      <div class="two">
+        <div class="viewer">
+          <div class="view-tabs" role="group" aria-label="Which pair to show">
+            <button data-view="shown" aria-pressed="true">As shown</button>
+            <button data-view="fair" aria-pressed="false">Same light</button>
+          </div>
+          <div class="stage">
+            <img id="img-before" alt="Before photo">
+            <img id="img-after" alt="After photo">
+            <span class="side l">Before</span><span class="side r">After</span>
+            <i id="divider"></i>
+          </div>
+          <input id="wipe" type="range" min="0" max="100" value="50" aria-label="Move the divider between before and after">
+        </div>
+
+        <div class="reading">
+          <h3>Skin, measure by measure</h3>
+          <table>
+            <thead><tr><th>Measure</th><th class="r">As shown</th><th class="r">Same light</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <p class="note">Change in YouCam score, higher is healthier. A change counts only if it holds in both columns.</p>
+
+          <h3>What changed besides skin</h3>
+          <dl id="facts"></dl>
+        </div>
+      </div>
+
+      <div class="next">
+        <h3>Before you pay</h3>
+        <ol id="steps"></ol>
+      </div>
+
+      <div class="selfie">
+        <h3>Does your skin need this?</h3>
+        <p>Measure your own skin the same way and compare it with where the ad ends.</p>
+        <label class="pick">Choose a selfie<input id="selfie" type="file" accept="image/*"></label>
+        <p id="selfie-status" class="note" role="status"></p>
+        <table id="selfie-table" hidden>
+          <thead><tr><th>Measure</th><th class="r">You</th><th class="r">Ad ends at</th><th>Reading</th></tr></thead>
+          <tbody id="selfie-rows"></tbody>
+        </table>
+        <p class="note">Your photo goes to YouCam for this one analysis. SameLight stores nothing.</p>
+      </div>
+    </section>
+
+    <section class="method">
+      <h2>How the check works</h2>
+      <ol>
+        <li><b>Line up.</b> MediaPipe finds both faces in your browser, then levels and scales them to the same size.</li>
+        <li><b>Match the camera.</b> Eyes, brows and lip edges do not change with skincare, so any loss of detail there is the camera. The sharper photo is softened until those parts match, and the eyes set exposure and colour.</li>
+        <li><b>Measure twice.</b> YouCam Skin Analysis scores the pair as published and again under the same light.</li>
+      </ol>
+      <h2>Tested before launch</h2>
+      <p>Each test is a known answer: camera tricks with no skin change, a real skin change made with YouCam Skin Simulation, and an untouched copy of the same photo.</p>
+      <table id="study"></table>
+      <p class="note">Scores are added across six measures. Test faces are AI generated with YouCam.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Built on the YouCam Skin Analysis API.</span>
+    <a href="https://github.com/0Smallcat0/samelight">Source</a>
+  </footer>
+</div>
+<script src="samelight.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+ "examples": [
+  {
+   "id": "face1_trick",
+   "title": "Soft focus, bright light, warm filter"
+  },
+  {
+   "id": "face3_real",
+   "title": "Real skin change, same camera"
+  },
+  {
+   "id": "face1_mixed",
+   "title": "Real change plus camera tricks"
+  }
+ ],
+ "study": [
+  {
+   "name": "Camera tricks, no skin change",
+   "pairs": 3,
+   "shown": "+88 pts",
+   "left": "+2 pts (3%)"
+  },
+  {
+   "name": "Real skin change",
+   "pairs": 3,
+   "shown": "+161 pts",
+   "left": "+145 pts (90%)"
+  },
+  {
+   "name": "Real change plus camera tricks",
+   "pairs": 1,
+   "shown": "+214 pts",
+   "left": "+88 pts (41%)"
+  },
+  {
+   "name": "Same photo, copied",
+   "pairs": 2,
+   "shown": "+2 pts",
+   "left": "+1 pts"
+  }
+ ]
+}

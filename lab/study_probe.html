@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf8"><title>probe</title>
+<script src="/samelight.js"></script>
+<script>
+async function img(url){const i=new Image();i.src=url;await i.decode();return SameLight.toCanvas(i);}
+const b64=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(',')[1]);f.readAsDataURL(b);});
+window.run=async(before,after)=>{
+  const p=await SameLight.prepare(await img(before),await img(after));
+  const out={facts:p.facts};
+  for(const k of ['shownBefore','shownAfter','fairBefore','fairAfter']) out[k]=await b64(p.blobs[k]);
+  return out;
+};
+</script>

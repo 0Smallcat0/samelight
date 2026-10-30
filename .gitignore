@@ -1,0 +1,10 @@
+.env
+.dev.vars
+.wrangler/
+node_modules/
+lab/__pycache__/
+lab/study/
+lab/*.jpg
+lab/*.png
+lab/doc_sample.png
+video/
